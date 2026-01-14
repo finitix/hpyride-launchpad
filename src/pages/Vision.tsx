@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Shield, Leaf, Users, Heart, Globe, Zap } from "lucide-react";
 
 const visionPillars = [
@@ -48,6 +49,12 @@ const values = [
 const Vision = () => {
   return (
     <Layout>
+      <SEO
+        title="HpyRide Vision - Transforming Indian Mobility with Safe Car Pooling"
+        description="Discover HpyRide's vision for India's future mobility. Safe car pooling, sustainable ride sharing, and empowering drivers across the nation."
+        keywords="hpyride vision, car pooling future India, ride sharing mission, sustainable mobility, driver empowerment, hpyride mission"
+        canonicalUrl="https://hpyride.com/vision"
+      />
       {/* Hero Section */}
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4 lg:px-8">

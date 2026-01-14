@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Car, CarFront, BadgeDollarSign, Users, MapPin, Clock, Shield, Star, ChevronDown, ChevronUp } from "lucide-react";
 import rideBookingImg from "@/assets/ride-booking.jpg";
@@ -101,6 +102,12 @@ const Services = () => {
 
   return (
     <Layout>
+      <SEO
+        title="HpyRide Services - Car Pooling, Ride Sharing, Driver Pooling & Car Rental India"
+        description="Explore HpyRide's mobility services: car pooling, ride sharing, driver pooling network, and car rental across 50+ Indian cities. Safe, affordable transportation solutions."
+        keywords="hpyride services, car pooling service India, ride sharing app, driver pooling network, car rental India, ride booking service"
+        canonicalUrl="https://hpyride.com/services"
+      />
       {/* Hero Section */}
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4 lg:px-8">
