@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Linkedin, Twitter } from "lucide-react";
 import heroImage from "@/assets/hero-ride-sharing.jpg";
 
@@ -30,6 +31,12 @@ const teamMembers = [
 const About = () => {
   return (
     <Layout>
+      <SEO
+        title="About HpyRide - India's Leading Car Pooling & Ride Sharing Company"
+        description="Learn about HpyRide, India's emerging leader in car pooling, ride sharing, and driver pooling. Meet our team building safer, smarter transportation for millions of Indians."
+        keywords="about hpyride, hpyride company, car pooling India company, ride sharing startup, hpyride team, Indian mobility startup"
+        canonicalUrl="https://hpyride.com/about"
+      />
       {/* SEO Meta via document head would be here in a real SSR app */}
       
       {/* Hero Section */}

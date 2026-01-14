@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -44,6 +45,12 @@ const Contact = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Contact HpyRide - Car Pooling & Ride Sharing Support India"
+        description="Get in touch with HpyRide for car pooling, ride sharing, driver pooling inquiries. Customer support, partnerships, and feedback. We respond within 24 hours."
+        keywords="contact hpyride, hpyride support, car pooling help, ride sharing contact, hpyride customer service, hpyride email"
+        canonicalUrl="https://hpyride.com/contact"
+      />
       {/* Hero Section */}
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto px-4 lg:px-8">
