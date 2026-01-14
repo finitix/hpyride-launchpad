@@ -7,6 +7,10 @@
     {
       "source": "/app/(.*)",
       "destination": "https://hpyrideadmin.vercel.app/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
