@@ -1,5 +1,12 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/app",
+      "destination": "https://hpyrideadmin.vercel.app"
+    },
+    {
+      "source": "/app/(.*)",
+      "destination": "https://hpyrideadmin.vercel.app/$1"
+    }
   ]
 }
