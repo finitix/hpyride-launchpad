@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Linkedin, Twitter } from "lucide-react";
+import heroImage from "@/assets/hero-ride-sharing.jpg";
 
 const teamMembers = [
   {
@@ -28,9 +30,21 @@ const teamMembers = [
 const About = () => {
   return (
     <Layout>
+      {/* SEO Meta via document head would be here in a real SSR app */}
+      
       {/* Hero Section */}
-      <section className="py-24 bg-secondary/30">
-        <div className="container mx-auto px-4 lg:px-8">
+      <section className="relative py-24 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={heroImage}
+            alt="HpyRide team building India's best car pooling platform"
+            className="w-full h-full object-cover opacity-20"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 to-background" />
+        </div>
+        
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,18 +52,17 @@ const About = () => {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              The Future of Indian Mobility{" "}
-              <span className="gradient-text">Begins Here</span>
+              About <span className="gradient-text">HpyRide</span> — India's Car Pooling Pioneer
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              Building a connected, safe, and joyful transportation ecosystem for every Indian.
+              Building a connected, safe, and affordable ride sharing ecosystem for every Indian traveler.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Who We Are */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background" aria-labelledby="who-we-are">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -58,18 +71,34 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Who <span className="gradient-text">We Are</span>
+              <h2 id="who-we-are" className="text-3xl md:text-4xl font-bold mb-6">
+                Who is <span className="gradient-text">HpyRide</span>?
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                HpyRide is built to make daily travel safer, smarter, and more connected. 
-                We blend technology and trust to empower riders and drivers alike.
+                HpyRide is India's emerging leader in <strong>car pooling</strong>, <strong>ride sharing</strong>, 
+                and <strong>driver pooling</strong> services. We blend technology and trust to create 
+                safer, smarter, and more affordable transportation options.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Our platform brings together ride sharing, car rentals, and driver pooling 
-                into one seamless experience — designed specifically for the unique needs 
-                of Indian travelers.
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                Our platform connects millions of Indian commuters with verified drivers for daily 
+                <strong> ride booking</strong>, intercity travel, and <strong>car rental</strong> needs.
               </p>
+              
+              {/* Internal Links */}
+              <div className="flex flex-wrap gap-4">
+                <Link 
+                  to="/services" 
+                  className="text-brand-pink hover:text-brand-purple transition-colors font-medium"
+                >
+                  Explore Our Services →
+                </Link>
+                <Link 
+                  to="/vision" 
+                  className="text-brand-pink hover:text-brand-purple transition-colors font-medium"
+                >
+                  Our Vision →
+                </Link>
+              </div>
             </motion.div>
             
             <motion.div
@@ -88,15 +117,15 @@ const About = () => {
                     </div>
                     <div className="text-center">
                       <p className="text-4xl font-bold gradient-text">50+</p>
-                      <p className="text-muted-foreground">Cities Planned</p>
+                      <p className="text-muted-foreground">Indian Cities</p>
                     </div>
                     <div className="text-center">
                       <p className="text-4xl font-bold gradient-text">100%</p>
-                      <p className="text-muted-foreground">Safety Focus</p>
+                      <p className="text-muted-foreground">Verified Drivers</p>
                     </div>
                     <div className="text-center">
                       <p className="text-4xl font-bold gradient-text">24/7</p>
-                      <p className="text-muted-foreground">Support Ready</p>
+                      <p className="text-muted-foreground">Customer Support</p>
                     </div>
                   </div>
                 </div>
@@ -107,7 +136,7 @@ const About = () => {
       </section>
 
       {/* Our Story */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-24 bg-secondary/30" aria-labelledby="our-story">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -116,27 +145,25 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Our <span className="gradient-text">Story</span>
+            <h2 id="our-story" className="text-3xl md:text-4xl font-bold mb-6">
+              The <span className="gradient-text">HpyRide</span> Story
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Founded to solve India's mobility challenges, we aim to create a 
-              community-driven ecosystem for efficient transportation. Born from 
-              the frustration of unreliable rides and the vision of a connected India, 
-              HpyRide is more than an app — it's a movement.
+              Founded to solve India's transportation challenges, HpyRide started with a simple 
+              mission: make <strong>car pooling</strong> and <strong>ride sharing</strong> accessible, 
+              affordable, and safe for every Indian. From Delhi to Chennai, Mumbai to Kolkata — 
+              we're building the future of <strong>driver pooling</strong> and <strong>ride booking</strong>.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We believe that every journey should be safe, affordable, and joyful. 
-              That's why we're building technology that brings people together, 
-              reduces costs, and creates opportunities for millions of drivers 
-              and travelers across India.
+              Every journey on HpyRide reduces traffic congestion, lowers carbon emissions, 
+              and creates economic opportunities for drivers across India.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Our Team */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background" aria-labelledby="our-team">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -145,17 +172,17 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Meet Our <span className="gradient-text">Team</span>
+            <h2 id="our-team" className="text-3xl md:text-4xl font-bold mb-4">
+              Meet the <span className="gradient-text">HpyRide Team</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Passionate individuals working together to transform Indian mobility.
+              Passionate experts working to transform Indian mobility through innovation and trust.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
-              <motion.div
+              <motion.article
                 key={member.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -164,7 +191,6 @@ const About = () => {
                 className="group"
               >
                 <div className="relative bg-background rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 card-hover text-center">
-                  {/* Gradient Border on Hover */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-brand opacity-0 group-hover:opacity-100 -z-10 blur-sm transition-opacity duration-300" />
                   <div className="absolute inset-[2px] rounded-[14px] bg-background -z-[5]" />
                   
@@ -172,8 +198,9 @@ const About = () => {
                     <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
                       <img
                         src={member.image}
-                        alt={member.name}
+                        alt={`${member.name} - ${member.role} at HpyRide`}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground mb-1">
@@ -186,20 +213,42 @@ const About = () => {
                       <a
                         href="#"
                         className="p-2 rounded-full bg-secondary text-muted-foreground hover:text-brand-pink transition-colors"
+                        aria-label={`${member.name}'s LinkedIn`}
                       >
                         <Linkedin size={16} />
                       </a>
                       <a
                         href="#"
                         className="p-2 rounded-full bg-secondary text-muted-foreground hover:text-brand-pink transition-colors"
+                        aria-label={`${member.name}'s Twitter`}
                       >
                         <Twitter size={16} />
                       </a>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Ready to Experience <span className="gradient-text">HpyRide</span>?
+          </h2>
+          <p className="text-muted-foreground mb-8">
+            Join thousands of Indians choosing smarter, safer car pooling and ride sharing.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              ← Back to Home
+            </Link>
+            <Link to="/contact" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              Contact Us →
+            </Link>
           </div>
         </div>
       </section>

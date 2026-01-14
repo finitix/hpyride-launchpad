@@ -1,27 +1,28 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Shield, Leaf, Users, Heart, Globe, Zap } from "lucide-react";
 
 const visionPillars = [
   {
     icon: Shield,
-    title: "Safety for Every Journey",
+    title: "Safe Car Pooling for Every Journey",
     description:
-      "Real-time GPS tracking, emergency SOS support, and verified drivers ensure you travel with complete peace of mind.",
+      "Real-time GPS tracking, emergency SOS support, and 100% verified drivers ensure you travel with complete peace of mind on every HpyRide.",
     color: "from-brand-purple to-brand-pink",
   },
   {
     icon: Leaf,
-    title: "Smart Sustainability",
+    title: "Sustainable Ride Sharing",
     description:
-      "Shared rides mean fewer vehicles on the road, reduced emissions, and a greener India for future generations.",
+      "Every shared ride means fewer vehicles, reduced emissions, and cleaner air for Indian cities. Join the green mobility revolution.",
     color: "from-brand-pink to-brand-rose",
   },
   {
     icon: Users,
-    title: "Empowering Drivers",
+    title: "Empowering Indian Drivers",
     description:
-      "Fair income models, flexible schedules, and community support help drivers build sustainable livelihoods.",
+      "Fair income models and driver pooling opportunities help professional drivers build sustainable livelihoods across India.",
     color: "from-brand-rose to-brand-purple",
   },
 ];
@@ -29,18 +30,18 @@ const visionPillars = [
 const values = [
   {
     icon: Heart,
-    title: "Trust",
-    description: "Building genuine connections between riders and drivers.",
+    title: "Trust & Safety",
+    description: "Building genuine connections between riders and verified drivers.",
   },
   {
     icon: Globe,
-    title: "Accessibility",
-    description: "Mobility solutions for every Indian, everywhere.",
+    title: "Pan-India Accessibility",
+    description: "Car pooling and ride booking solutions for every Indian city.",
   },
   {
     icon: Zap,
-    title: "Innovation",
-    description: "Constantly improving through technology and feedback.",
+    title: "Continuous Innovation",
+    description: "Improving our ride sharing platform through technology and feedback.",
   },
 ];
 
@@ -57,18 +58,17 @@ const Vision = () => {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Driven by Trust, Innovation, and{" "}
-              <span className="gradient-text">Happiness</span>
+              <span className="gradient-text">HpyRide</span> Vision — Driving India Forward
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              Our vision is to transform how India travels — making every journey safe, affordable, and joyful.
+              Our vision is to transform Indian mobility — making car pooling, ride sharing, and driver pooling safe, affordable, and joyful for everyone.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Vision Pillars */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background" aria-labelledby="vision-pillars">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,17 +77,17 @@ const Vision = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our <span className="gradient-text">Vision Pillars</span>
+            <h2 id="vision-pillars" className="text-3xl md:text-4xl font-bold mb-4">
+              HpyRide <span className="gradient-text">Vision Pillars</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Three core principles that guide everything we build.
+              Three core principles guiding India's car pooling and ride sharing revolution.
             </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-8">
             {visionPillars.map((pillar, index) => (
-              <motion.div
+              <motion.article
                 key={pillar.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -96,21 +96,18 @@ const Vision = () => {
                 className="group relative"
               >
                 <div className="relative bg-background rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 card-hover overflow-hidden h-full">
-                  {/* Gradient Line at Top */}
                   <div
                     className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${pillar.color}`}
                   />
 
-                  {/* Icon */}
                   <motion.div
                     className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${pillar.color} mb-6`}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <pillar.icon className="w-8 h-8 text-white" />
+                    <pillar.icon className="w-8 h-8 text-white" aria-hidden="true" />
                   </motion.div>
 
-                  {/* Content */}
                   <h3 className="text-xl font-semibold mb-4 text-foreground">
                     {pillar.title}
                   </h3>
@@ -118,11 +115,10 @@ const Vision = () => {
                     {pillar.description}
                   </p>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
 
-          {/* Animated Gradient Line */}
           <div className="mt-16 flex justify-center">
             <motion.div
               className="w-full max-w-3xl h-1 bg-gradient-brand rounded-full"
@@ -136,7 +132,7 @@ const Vision = () => {
       </section>
 
       {/* Our Values */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-24 bg-secondary/30" aria-labelledby="core-values">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -145,11 +141,11 @@ const Vision = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our Core <span className="gradient-text">Values</span>
+            <h2 id="core-values" className="text-3xl md:text-4xl font-bold mb-4">
+              HpyRide Core <span className="gradient-text">Values</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              The principles that define who we are and how we work.
+              The principles that define how we build India's best car pooling platform.
             </p>
           </motion.div>
 
@@ -168,7 +164,7 @@ const Vision = () => {
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <value.icon className="w-10 h-10 text-white" />
+                  <value.icon className="w-10 h-10 text-white" aria-hidden="true" />
                 </motion.div>
                 <h3 className="text-xl font-semibold mb-3 text-foreground">
                   {value.title}
@@ -181,7 +177,7 @@ const Vision = () => {
       </section>
 
       {/* Mission Statement */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background" aria-labelledby="mission-statement">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -192,18 +188,40 @@ const Vision = () => {
           >
             <div className="relative bg-gradient-brand rounded-3xl p-1">
               <div className="bg-background rounded-[22px] p-12 text-center">
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">
-                  Our <span className="gradient-text">Mission</span>
+                <h2 id="mission-statement" className="text-2xl md:text-3xl font-bold mb-6">
+                  The <span className="gradient-text">HpyRide</span> Mission
                 </h2>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                  "To create India's most trusted mobility platform that connects 
-                  millions of riders and drivers through technology, transparency, 
-                  and shared purpose — making every journey a step towards a 
-                  more connected and sustainable future."
-                </p>
+                <blockquote className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                  "To create India's most trusted platform for car pooling, ride sharing, and driver pooling 
+                  that connects millions of riders and drivers through technology, transparency, 
+                  and shared purpose — making every journey safer, greener, and more affordable."
+                </blockquote>
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Internal Links */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">
+            Learn More About <span className="gradient-text">HpyRide</span>
+          </h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link to="/" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              ← Back to Home
+            </Link>
+            <Link to="/about" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              About Us
+            </Link>
+            <Link to="/services" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              Our Services
+            </Link>
+            <Link to="/contact" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              Contact Us →
+            </Link>
+          </div>
         </div>
       </section>
     </Layout>

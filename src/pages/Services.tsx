@@ -1,70 +1,102 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Car, CarFront, BadgeDollarSign, Users, MapPin, Clock, Shield, Star } from "lucide-react";
+import { Car, CarFront, BadgeDollarSign, Users, MapPin, Clock, Shield, Star, ChevronDown, ChevronUp } from "lucide-react";
+import rideBookingImg from "@/assets/ride-booking.jpg";
+import carRentalImg from "@/assets/car-rental.jpg";
+import driverPoolingImg from "@/assets/driver-pooling.jpg";
 
 const services = [
   {
     id: "ride-sharing",
     icon: Car,
-    title: "Ride Sharing",
+    title: "Ride Sharing & Car Pooling",
     status: "active",
-    description: "Find or offer rides with trusted users. Share your journey, split the cost, and travel together.",
+    description: "HpyRide's car pooling service connects you with verified riders and drivers on your route. Share rides, split costs, and reduce traffic across Indian cities.",
     features: [
-      { icon: MapPin, text: "Route-based matching" },
-      { icon: Shield, text: "Verified profiles" },
-      { icon: Clock, text: "Flexible scheduling" },
-      { icon: Star, text: "Rating system" },
+      { icon: MapPin, text: "Route-based matching for efficient car pooling" },
+      { icon: Shield, text: "100% verified driver profiles" },
+      { icon: Clock, text: "Flexible ride booking schedules" },
+      { icon: Star, text: "User rating and review system" },
     ],
-    cta: "Book or Offer Ride",
+    cta: "Join Car Pooling",
+    image: rideBookingImg,
   },
   {
     id: "car-rental",
     icon: CarFront,
-    title: "Car Rental",
+    title: "Car Rental Services",
     status: "coming-soon",
-    description: "Rent verified cars hourly or daily. Drive your way, anywhere across India.",
+    description: "Rent verified cars hourly or daily across all major Indian cities. Self-drive or chauffeur-driven options for business and leisure travel.",
     features: [
-      { icon: Car, text: "Wide vehicle selection" },
-      { icon: Shield, text: "Fully insured" },
-      { icon: Clock, text: "Flexible durations" },
-      { icon: MapPin, text: "Pan-India availability" },
+      { icon: Car, text: "Wide selection of rental vehicles" },
+      { icon: Shield, text: "Fully insured car rentals" },
+      { icon: Clock, text: "Hourly, daily, weekly rentals" },
+      { icon: MapPin, text: "Available in 50+ Indian cities" },
     ],
     cta: "Coming Soon",
+    image: carRentalImg,
   },
   {
     id: "pre-owned",
     icon: BadgeDollarSign,
-    title: "Pre-Owned Cars",
+    title: "Pre-Owned Car Marketplace",
     status: "coming-soon",
-    description: "Buy or sell verified used cars easily. Trusted deals, transparent pricing, happy drives.",
+    description: "Buy or sell verified used cars on HpyRide's trusted marketplace. Complete documentation, fair pricing, and hassle-free transfers.",
     features: [
-      { icon: Shield, text: "Verified history" },
-      { icon: Star, text: "Quality certified" },
-      { icon: BadgeDollarSign, text: "Fair pricing" },
-      { icon: Clock, text: "Quick transfer" },
+      { icon: Shield, text: "Verified vehicle history" },
+      { icon: Star, text: "Quality certified cars" },
+      { icon: BadgeDollarSign, text: "Transparent pricing" },
+      { icon: Clock, text: "Quick ownership transfer" },
     ],
     cta: "Coming Soon",
+    image: null,
   },
   {
     id: "driver-pooling",
     icon: Users,
-    title: "Driver Pooling",
+    title: "Driver Pooling Network",
     status: "coming-soon",
-    description: "Collaborate with professional long-haul drivers. Shared routes, better income.",
+    description: "Professional driver pooling for long-distance routes. Licensed drivers collaborate for better income and reliable intercity travel.",
     features: [
-      { icon: Users, text: "Professional network" },
-      { icon: MapPin, text: "Long-distance routes" },
-      { icon: BadgeDollarSign, text: "Fair revenue sharing" },
-      { icon: Shield, text: "Licensed drivers" },
+      { icon: Users, text: "Professional driver network" },
+      { icon: MapPin, text: "Long-distance route coverage" },
+      { icon: BadgeDollarSign, text: "Fair revenue sharing model" },
+      { icon: Shield, text: "Licensed and verified drivers" },
     ],
     cta: "Coming Soon",
+    image: driverPoolingImg,
+  },
+];
+
+const faqs = [
+  {
+    question: "What is car pooling and how does HpyRide work?",
+    answer: "Car pooling (also called carpooling or ride sharing) is sharing a car journey with others traveling on the same route. HpyRide connects riders and drivers through our app, matching you with verified users for safe, affordable shared rides across India."
+  },
+  {
+    question: "Is ride sharing on HpyRide safe?",
+    answer: "Yes! HpyRide prioritizes safety with 100% driver verification, real-time GPS tracking, emergency SOS features, and user ratings. All drivers undergo background checks before joining our driver pooling network."
+  },
+  {
+    question: "Which cities does HpyRide operate in?",
+    answer: "HpyRide is launching across 50+ major Indian cities including Delhi NCR, Mumbai, Bangalore, Chennai, Hyderabad, Kolkata, Pune, and more. Our ride booking and car pooling services expand to new cities regularly."
+  },
+  {
+    question: "How much can I save with car pooling?",
+    answer: "HpyRide users save up to 60% on daily commute costs compared to private cabs or ride-hailing. Car pooling splits fuel and toll costs among passengers, making it the most affordable ride sharing option in India."
+  },
+  {
+    question: "How do I book a ride on HpyRide?",
+    answer: "Download the HpyRide app, create an account, enter your pickup and destination, and find available car pooling or ride sharing options. You can also offer rides if you're driving and want to share costs."
   },
 ];
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState("ride-sharing");
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const activeService = services.find((s) => s.id === activeTab);
 
   return (
@@ -79,19 +111,20 @@ const Services = () => {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              All Your Mobility Needs,{" "}
-              <span className="gradient-text">One Platform</span>
+              <span className="gradient-text">HpyRide</span> Mobility Services
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              From daily commutes to car ownership — we've got you covered.
+              Complete car pooling, ride sharing, driver pooling, and car rental solutions for India.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Services Tabs */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background" aria-labelledby="services-detail">
         <div className="container mx-auto px-4 lg:px-8">
+          <h2 id="services-detail" className="sr-only">HpyRide Service Details</h2>
+          
           {/* Tab Navigation */}
           <div className="flex flex-wrap justify-center gap-4 mb-16">
             {services.map((service) => (
@@ -114,8 +147,8 @@ const Services = () => {
                   />
                 )}
                 <span className="relative z-10 flex items-center gap-2">
-                  <service.icon size={18} />
-                  {service.title}
+                  <service.icon size={18} aria-hidden="true" />
+                  {service.title.split(" ")[0]}
                   {service.status === "coming-soon" && (
                     <span className="text-xs px-2 py-0.5 rounded-full bg-white/20">
                       Soon
@@ -155,6 +188,7 @@ const Services = () => {
                               ? "text-white"
                               : "text-muted-foreground"
                           }`}
+                          aria-hidden="true"
                         />
                       </motion.div>
                       {activeService.status === "active" ? (
@@ -168,9 +202,9 @@ const Services = () => {
                       )}
                     </div>
 
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4">
                       {activeService.title}
-                    </h2>
+                    </h3>
                     <p className="text-lg text-muted-foreground mb-8">
                       {activeService.description}
                     </p>
@@ -186,26 +220,39 @@ const Services = () => {
                     )}
                   </div>
 
-                  {/* Right: Features */}
-                  <div className="bg-secondary/50 rounded-3xl p-8">
-                    <h3 className="text-lg font-semibold mb-6">Key Features</h3>
-                    <div className="grid gap-4">
-                      {activeService.features.map((feature, index) => (
-                        <motion.div
-                          key={feature.text}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: index * 0.1 }}
-                          className="flex items-center gap-4 p-4 bg-background rounded-xl"
-                        >
-                          <div className="w-10 h-10 rounded-lg bg-gradient-brand flex items-center justify-center flex-shrink-0">
-                            <feature.icon className="w-5 h-5 text-white" />
-                          </div>
-                          <span className="font-medium text-foreground">
-                            {feature.text}
-                          </span>
-                        </motion.div>
-                      ))}
+                  {/* Right: Image + Features */}
+                  <div className="space-y-6">
+                    {activeService.image && (
+                      <div className="rounded-2xl overflow-hidden shadow-lg">
+                        <img
+                          src={activeService.image}
+                          alt={`${activeService.title} - HpyRide India`}
+                          className="w-full h-48 object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    
+                    <div className="bg-secondary/50 rounded-3xl p-6">
+                      <h4 className="text-lg font-semibold mb-4">Key Features</h4>
+                      <div className="grid gap-3">
+                        {activeService.features.map((feature, index) => (
+                          <motion.div
+                            key={feature.text}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            className="flex items-center gap-3 p-3 bg-background rounded-xl"
+                          >
+                            <div className="w-8 h-8 rounded-lg bg-gradient-brand flex items-center justify-center flex-shrink-0">
+                              <feature.icon className="w-4 h-4 text-white" aria-hidden="true" />
+                            </div>
+                            <span className="text-sm font-medium text-foreground">
+                              {feature.text}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -215,8 +262,8 @@ const Services = () => {
         </div>
       </section>
 
-      {/* All Services Grid */}
-      <section className="py-24 bg-secondary/30">
+      {/* FAQ Section */}
+      <section className="py-24 bg-secondary/30" aria-labelledby="faq-heading">
         <div className="container mx-auto px-4 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -225,59 +272,74 @@ const Services = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Complete <span className="gradient-text">Mobility Ecosystem</span>
+            <h2 id="faq-heading" className="text-3xl md:text-4xl font-bold mb-4">
+              Frequently Asked Questions About <span className="gradient-text">HpyRide</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              One app for all your transportation needs — today and tomorrow.
+              Everything you need to know about car pooling, ride sharing, and ride booking in India.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
+          <div className="max-w-3xl mx-auto space-y-4">
+            {faqs.map((faq, index) => (
               <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-background rounded-xl overflow-hidden shadow-sm"
               >
-                <div
-                  className={`relative bg-background rounded-2xl p-6 h-full transition-all duration-300 card-hover ${
-                    service.status === "active"
-                      ? "shadow-lg"
-                      : "border border-border"
-                  }`}
+                <button
+                  onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  className="w-full flex items-center justify-between p-6 text-left"
                 >
-                  {service.status === "active" && (
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-brand opacity-10" />
+                  <h3 className="font-semibold text-foreground pr-4">{faq.question}</h3>
+                  {openFaq === index ? (
+                    <ChevronUp className="w-5 h-5 text-brand-pink flex-shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0" />
                   )}
-
-                  <div className="relative z-10">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                        service.status === "active"
-                          ? "bg-gradient-brand"
-                          : "bg-secondary"
-                      }`}
+                </button>
+                <AnimatePresence>
+                  {openFaq === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <service.icon
-                        className={`w-6 h-6 ${
-                          service.status === "active"
-                            ? "text-white"
-                            : "text-muted-foreground"
-                        }`}
-                      />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
+                      <p className="px-6 pb-6 text-muted-foreground">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Internal Links CTA */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">
+            Explore More About <span className="gradient-text">HpyRide</span>
+          </h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link to="/" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              ← Back to Home
+            </Link>
+            <Link to="/about" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              About HpyRide
+            </Link>
+            <Link to="/vision" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              Our Vision
+            </Link>
+            <Link to="/contact" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              Contact Us →
+            </Link>
           </div>
         </div>
       </section>

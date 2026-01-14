@@ -1,27 +1,28 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Car, Handshake, Globe } from "lucide-react";
 
 const visionPoints = [
   {
     icon: Car,
-    title: "Connected Rides",
-    description: "Seamlessly linking riders and drivers across India.",
+    title: "Connected Rides Across India",
+    description: "Linking riders and drivers in Delhi, Mumbai, Bangalore, and 50+ cities.",
   },
   {
     icon: Handshake,
-    title: "Community Impact",
-    description: "Building trust-based transportation networks.",
+    title: "Community-Driven Mobility",
+    description: "Building trust-based car pooling and driver pooling networks.",
   },
   {
     icon: Globe,
-    title: "Sustainable Future",
-    description: "Reducing emissions through shared mobility.",
+    title: "Sustainable Transportation",
+    description: "Reducing emissions through shared rides and car pooling initiatives.",
   },
 ];
 
 const VisionSection = () => {
   return (
-    <section className="py-24 bg-secondary/30">
+    <section className="py-24 bg-secondary/30" aria-labelledby="vision-heading">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <motion.div
@@ -31,12 +32,12 @@ const VisionSection = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Our Vision — <span className="gradient-text">Driving India Forward</span>
+            <h2 id="vision-heading" className="text-3xl md:text-4xl font-bold mb-6">
+              HpyRide Vision — <span className="gradient-text">Driving India Forward</span>
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              At HpyRide, we believe mobility should be joyful, safe, and accessible for everyone.
-              Our goal is to connect riders and drivers through trust, innovation, and empathy.
+              At HpyRide, we're building India's most trusted platform for car pooling, ride sharing, and driver pooling. 
+              Our goal is to make every journey safe, affordable, and joyful.
             </p>
           </motion.div>
 
@@ -55,7 +56,7 @@ const VisionSection = () => {
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <point.icon className="w-10 h-10 text-white" />
+                  <point.icon className="w-10 h-10 text-white" aria-hidden="true" />
                 </motion.div>
                 <h3 className="text-xl font-semibold mb-3 text-foreground">
                   {point.title}
@@ -66,6 +67,21 @@ const VisionSection = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Internal Link */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Link 
+              to="/vision" 
+              className="text-brand-pink hover:text-brand-purple transition-colors font-medium"
+            >
+              Learn More About Our Vision →
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
