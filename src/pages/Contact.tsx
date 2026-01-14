@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Linkedin, Instagram, Twitter, Youtube, CheckCircle, Clock } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Mail, Linkedin, Instagram, Twitter, Youtube, CheckCircle, Clock, MapPin, Phone } from "lucide-react";
 
 const socialLinks = [
-  { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-[#0077B5]" },
-  { icon: Instagram, href: "#", label: "Instagram", color: "hover:text-[#E4405F]" },
-  { icon: Twitter, href: "#", label: "X (Twitter)", color: "hover:text-foreground" },
-  { icon: Youtube, href: "#", label: "YouTube", color: "hover:text-[#FF0000]" },
+  { icon: Linkedin, href: "#", label: "HpyRide LinkedIn", color: "hover:text-[#0077B5]" },
+  { icon: Instagram, href: "#", label: "HpyRide Instagram", color: "hover:text-[#E4405F]" },
+  { icon: Twitter, href: "#", label: "HpyRide Twitter", color: "hover:text-foreground" },
+  { icon: Youtube, href: "#", label: "HpyRide YouTube", color: "hover:text-[#FF0000]" },
 ];
 
 const Contact = () => {
@@ -22,22 +22,13 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
-
     setIsSubmitting(false);
     setIsSubmitted(true);
-    toast({
-      title: "Message sent! 🎉",
-      description: "We'll get back to you within 24 hours.",
-    });
-
     setFormData({ name: "", email: "", message: "" });
     setTimeout(() => setIsSubmitted(false), 5000);
   };
@@ -63,18 +54,17 @@ const Contact = () => {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Let's Get in Touch{" "}
-              <span className="gradient-text">🚗</span>
+              Contact <span className="gradient-text">HpyRide</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground">
-              We'd love to hear from you. Reach out for partnerships, feedback, or queries.
+              Questions about car pooling, ride sharing, or driver pooling? We're here to help.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 bg-background">
+      <section className="py-24 bg-background" aria-labelledby="contact-form">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
             {/* Contact Form */}
@@ -84,8 +74,8 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-8">
-                Send us a <span className="gradient-text">Message</span>
+              <h2 id="contact-form" className="text-2xl md:text-3xl font-bold mb-8">
+                Send <span className="gradient-text">HpyRide</span> a Message
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -137,7 +127,7 @@ const Contact = () => {
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="Tell us how we can help..."
+                    placeholder="Ask about car pooling, ride booking, driver pooling, or partnerships..."
                     value={formData.message}
                     onChange={handleChange}
                     required
@@ -175,18 +165,18 @@ const Contact = () => {
               className="lg:pl-8"
             >
               <h2 className="text-2xl md:text-3xl font-bold mb-8">
-                Contact <span className="gradient-text">Information</span>
+                <span className="gradient-text">HpyRide</span> Contact Info
               </h2>
 
               {/* Email Card */}
               <motion.div
-                className="bg-secondary/50 rounded-2xl p-6 mb-8"
+                className="bg-secondary/50 rounded-2xl p-6 mb-4"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-xl bg-gradient-brand flex items-center justify-center">
-                    <Mail className="w-7 h-7 text-white" />
+                    <Mail className="w-7 h-7 text-white" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Email us at</p>
@@ -202,13 +192,13 @@ const Contact = () => {
 
               {/* Response Time */}
               <motion.div
-                className="bg-secondary/50 rounded-2xl p-6 mb-8"
+                className="bg-secondary/50 rounded-2xl p-6 mb-4"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-xl bg-gradient-brand flex items-center justify-center">
-                    <Clock className="w-7 h-7 text-white" />
+                    <Clock className="w-7 h-7 text-white" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Response Time</p>
@@ -219,9 +209,28 @@ const Contact = () => {
                 </div>
               </motion.div>
 
+              {/* Location */}
+              <motion.div
+                className="bg-secondary/50 rounded-2xl p-6 mb-4"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-brand flex items-center justify-center">
+                    <MapPin className="w-7 h-7 text-white" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground mb-1">Headquarters</p>
+                    <p className="text-lg font-semibold text-foreground">
+                      India (Pan-India Service)
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
               {/* Social Links */}
               <div className="bg-secondary/50 rounded-2xl p-6">
-                <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
+                <h3 className="text-lg font-semibold mb-4">Follow HpyRide</h3>
                 <div className="flex items-center gap-4">
                   {socialLinks.map((social) => (
                     <motion.a
@@ -237,14 +246,30 @@ const Contact = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Map Placeholder */}
-              <div className="mt-8 bg-secondary/50 rounded-2xl p-8 text-center">
-                <p className="text-muted-foreground">
-                  📍 Based in India, serving the nation.
-                </p>
-              </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Internal Links */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">
+            Explore <span className="gradient-text">HpyRide</span>
+          </h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link to="/" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              ← Back to Home
+            </Link>
+            <Link to="/about" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              About Us
+            </Link>
+            <Link to="/services" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              Our Services
+            </Link>
+            <Link to="/vision" className="text-brand-pink hover:text-brand-purple transition-colors font-medium">
+              Our Vision
+            </Link>
           </div>
         </div>
       </section>
