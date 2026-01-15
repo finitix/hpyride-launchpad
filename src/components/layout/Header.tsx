@@ -90,8 +90,8 @@ const Header = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="gradientOutline" size="default">
-              Sign In
+            <Button variant="gradientOutline" size="default" asChild>
+              <a href="https://app.hpyride.com/">Sign In</a>
             </Button>
             <Button variant="gradient" size="default">
               Download App
@@ -132,8 +132,8 @@ const Header = () => {
                 </Link>
               ))}
               <div className="flex flex-col gap-3 pt-4">
-                <Button variant="gradientOutline" size="lg" className="w-full">
-                  Sign In
+                <Button variant="gradientOutline" size="lg" className="w-full" asChild>
+                  <a href="https://app.hpyride.com/">Sign In</a>
                 </Button>
                 <Button variant="gradient" size="lg" className="w-full">
                   Download App
