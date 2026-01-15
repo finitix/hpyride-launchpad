@@ -217,8 +217,10 @@ const Services = () => {
                     </p>
 
                     {activeService.status === "active" ? (
-                      <Button variant="gradient" size="lg">
-                        {activeService.cta}
+                      <Button variant="gradient" size="lg" asChild>
+                        <a href="https://app.hpyride.com/" target="_blank" rel="noopener noreferrer">
+                          {activeService.cta}
+                        </a>
                       </Button>
                     ) : (
                       <Button variant="secondary" size="lg" disabled>

@@ -2,31 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import SEO from "@/components/SEO";
-import { Linkedin, Twitter } from "lucide-react";
 import heroImage from "@/assets/hero-ride-sharing.jpg";
-
-const teamMembers = [
-  {
-    name: "Rajesh Kumar",
-    role: "CEO & Founder",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-  },
-  {
-    name: "Priya Sharma",
-    role: "CTO",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face",
-  },
-  {
-    name: "Amit Patel",
-    role: "Head of Operations",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-  },
-  {
-    name: "Neha Gupta",
-    role: "Head of Marketing",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
-  },
-];
 
 const About = () => {
   return (
@@ -169,76 +145,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Our Team */}
-      <section className="py-24 bg-background" aria-labelledby="our-team">
-        <div className="container mx-auto px-4 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 id="our-team" className="text-3xl md:text-4xl font-bold mb-4">
-              Meet the <span className="gradient-text">HpyRide Team</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Passionate experts working to transform Indian mobility through innovation and trust.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.article
-                key={member.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
-              >
-                <div className="relative bg-background rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 card-hover text-center">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-brand opacity-0 group-hover:opacity-100 -z-10 blur-sm transition-opacity duration-300" />
-                  <div className="absolute inset-[2px] rounded-[14px] bg-background -z-[5]" />
-                  
-                  <div className="relative z-10">
-                    <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
-                      <img
-                        src={member.image}
-                        alt={`${member.name} - ${member.role} at HpyRide`}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {member.role}
-                    </p>
-                    <div className="flex justify-center gap-3">
-                      <a
-                        href="#"
-                        className="p-2 rounded-full bg-secondary text-muted-foreground hover:text-brand-pink transition-colors"
-                        aria-label={`${member.name}'s LinkedIn`}
-                      >
-                        <Linkedin size={16} />
-                      </a>
-                      <a
-                        href="#"
-                        className="p-2 rounded-full bg-secondary text-muted-foreground hover:text-brand-pink transition-colors"
-                        aria-label={`${member.name}'s Twitter`}
-                      >
-                        <Twitter size={16} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="py-16 bg-secondary/30">
