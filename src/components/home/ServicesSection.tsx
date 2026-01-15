@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import rideBookingImg from "@/assets/ride-booking.jpg";
 import carRentalImg from "@/assets/car-rental.jpg";
 import driverPoolingImg from "@/assets/driver-pooling.jpg";
+import preOwnedCarsImg from "@/assets/pre-owned-cars.jpg";
 
 const services = [
   {
@@ -31,8 +32,8 @@ const services = [
     description: "Buy or sell verified used cars easily. Transparent pricing, complete documentation, and trusted deals.",
     status: "coming-soon",
     cta: "Coming Soon",
-    image: null,
-    alt: "",
+    image: preOwnedCarsImg,
+    alt: "Pre-owned cars marketplace in India - HpyRide verified used cars",
   },
   {
     icon: Users,
