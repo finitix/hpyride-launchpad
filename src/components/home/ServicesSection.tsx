@@ -179,7 +179,7 @@ const ServicesSection = () => {
 
                   {service.status === "active" ? (
                     <Button variant="gradient" size="default" asChild>
-                      <Link to="/services">{service.cta}</Link>
+                      <a href="https://app.hpyride.com/" target="_blank" rel="noopener noreferrer">{service.cta}</a>
                     </Button>
                   ) : (
                     <Button
