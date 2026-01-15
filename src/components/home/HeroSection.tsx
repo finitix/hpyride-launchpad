@@ -61,7 +61,7 @@ const HeroSection = () => {
                 Get Early Access
               </Button>
               <Button variant="gradientOutline" size="xl" asChild>
-                <Link to="/contact">Sign In</Link>
+                <a href="https://app.hpyride.com/">Sign In</a>
               </Button>
             </motion.div>
 
